@@ -10,9 +10,12 @@
 		844DB0D21F544A2600505FD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 844DB0D11F544A2600505FD9 /* main.m */; };
 		844DB0D51F544A2600505FD9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 844DB0D41F544A2600505FD9 /* AppDelegate.m */; };
 		844DB0D81F544A2600505FD9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844DB0D71F544A2600505FD9 /* ViewController.m */; };
-		844DB0DB1F544A2600505FD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844DB0D91F544A2600505FD9 /* Main.storyboard */; };
 		844DB0DD1F544A2600505FD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844DB0DC1F544A2600505FD9 /* Assets.xcassets */; };
-		844DB0E01F544A2600505FD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844DB0DE1F544A2600505FD9 /* LaunchScreen.storyboard */; };
+		844DB0E01F544A2600505FD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 844DB0DE1F544A2600505FD9 /* Main.storyboard */; };
+		847654281F5AFCB400FD450F /* WordData.m in Sources */ = {isa = PBXBuildFile; fileRef = 847654271F5AFCB400FD450F /* WordData.m */; };
+		84F643E11F55B3D700FE1B97 /* quotes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84F643E01F55B3D700FE1B97 /* quotes.txt */; };
+		84F9CF8B1F545BED001070D8 /* QuoteGeneratorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9CF8A1F545BED001070D8 /* QuoteGeneratorController.m */; };
+		84F9CF8F1F545C40001070D8 /* QuoteHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9CF8E1F545C40001070D8 /* QuoteHolder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,10 +25,16 @@
 		844DB0D41F544A2600505FD9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		844DB0D61F544A2600505FD9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		844DB0D71F544A2600505FD9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		844DB0DA1F544A2600505FD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		844DB0DC1F544A2600505FD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		844DB0DF1F544A2600505FD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		844DB0DF1F544A2600505FD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		844DB0E11F544A2600505FD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		847654261F5AFCB400FD450F /* WordData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordData.h; sourceTree = "<group>"; };
+		847654271F5AFCB400FD450F /* WordData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordData.m; sourceTree = "<group>"; };
+		84F643E01F55B3D700FE1B97 /* quotes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = quotes.txt; sourceTree = "<group>"; };
+		84F9CF891F545BED001070D8 /* QuoteGeneratorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuoteGeneratorController.h; sourceTree = "<group>"; };
+		84F9CF8A1F545BED001070D8 /* QuoteGeneratorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuoteGeneratorController.m; sourceTree = "<group>"; };
+		84F9CF8D1F545C40001070D8 /* QuoteHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuoteHolder.h; sourceTree = "<group>"; };
+		84F9CF8E1F545C40001070D8 /* QuoteHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuoteHolder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +67,18 @@
 		844DB0CF1F544A2600505FD9 /* randomGenerator */ = {
 			isa = PBXGroup;
 			children = (
+				84F643DF1F55B3D700FE1B97 /* Resources */,
+				84F9CF8C1F545C0C001070D8 /* Model */,
 				844DB0D31F544A2600505FD9 /* AppDelegate.h */,
 				844DB0D41F544A2600505FD9 /* AppDelegate.m */,
 				844DB0D61F544A2600505FD9 /* ViewController.h */,
 				844DB0D71F544A2600505FD9 /* ViewController.m */,
-				844DB0D91F544A2600505FD9 /* Main.storyboard */,
+				84F9CF891F545BED001070D8 /* QuoteGeneratorController.h */,
+				84F9CF8A1F545BED001070D8 /* QuoteGeneratorController.m */,
+				847654261F5AFCB400FD450F /* WordData.h */,
+				847654271F5AFCB400FD450F /* WordData.m */,
 				844DB0DC1F544A2600505FD9 /* Assets.xcassets */,
-				844DB0DE1F544A2600505FD9 /* LaunchScreen.storyboard */,
+				844DB0DE1F544A2600505FD9 /* Main.storyboard */,
 				844DB0E11F544A2600505FD9 /* Info.plist */,
 				844DB0D01F544A2600505FD9 /* Supporting Files */,
 			);
@@ -77,6 +91,23 @@
 				844DB0D11F544A2600505FD9 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84F643DF1F55B3D700FE1B97 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				84F643E01F55B3D700FE1B97 /* quotes.txt */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		84F9CF8C1F545C0C001070D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84F9CF8D1F545C40001070D8 /* QuoteHolder.h */,
+				84F9CF8E1F545C40001070D8 /* QuoteHolder.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,9 +167,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				844DB0E01F544A2600505FD9 /* LaunchScreen.storyboard in Resources */,
+				844DB0E01F544A2600505FD9 /* Main.storyboard in Resources */,
 				844DB0DD1F544A2600505FD9 /* Assets.xcassets in Resources */,
-				844DB0DB1F544A2600505FD9 /* Main.storyboard in Resources */,
+				84F643E11F55B3D700FE1B97 /* quotes.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,7 +181,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				844DB0D81F544A2600505FD9 /* ViewController.m in Sources */,
+				847654281F5AFCB400FD450F /* WordData.m in Sources */,
 				844DB0D51F544A2600505FD9 /* AppDelegate.m in Sources */,
+				84F9CF8F1F545C40001070D8 /* QuoteHolder.m in Sources */,
+				84F9CF8B1F545BED001070D8 /* QuoteGeneratorController.m in Sources */,
 				844DB0D21F544A2600505FD9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,20 +192,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		844DB0D91F544A2600505FD9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				844DB0DA1F544A2600505FD9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		844DB0DE1F544A2600505FD9 /* LaunchScreen.storyboard */ = {
+		844DB0DE1F544A2600505FD9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				844DB0DF1F544A2600505FD9 /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -298,6 +324,7 @@
 				844DB0E61F544A2600505FD9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
