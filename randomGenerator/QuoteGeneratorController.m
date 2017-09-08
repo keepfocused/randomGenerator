@@ -8,6 +8,7 @@
 
 #import "QuoteGeneratorController.h"
 #import "QuoteHolder.h"
+#import "WordData.h"
 
 
 @interface QuoteGeneratorController ()
@@ -114,10 +115,80 @@
 
     sortedArray = [repeatedWords sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
 
+    NSMutableArray* arrayWithWordData = [NSMutableArray array];
+
+    NSLog(@"tracer before cycle");
+
     
 
 
-    NSLog(@"repeated words = %@", sortedArray);
+    for (int i = 0; i < [sortedArray count]; i++) {
+
+        int count = 0;
+
+
+        if ([[sortedArray objectAtIndex:i] isEqualToString:[sortedArray objectAtIndex:i + 1 ]]) {
+            count = count + 1;
+        } else {
+
+            WordData* word = [[WordData alloc] init];
+            word.word = [sortedArray objectAtIndex:i - 1];
+            word.repeatsCount = count;
+            [arrayWithWordData addObject:word];
+            count = 0;
+
+
+        }
+
+
+
+
+
+
+
+//        if (i + 1 < [sortedArray count]) {
+//
+//            WordData* word = [[WordData alloc] init];
+//            word.repeatsCount = 0;
+//
+//            if ([[sortedArray objectAtIndex:i] isEqualToString:[sortedArray objectAtIndex:i + 1]]) {
+//                word.word = [sortedArray objectAtIndex:i];
+//                word.repeatsCount += 1;
+//
+//            } else {
+//
+//
+//                [arrayWithWordData addObject:word];
+//                word = nil;
+//
+//            }
+//            
+//        }
+
+        }
+
+
+
+
+    NSLog(@"tracer before");
+
+
+
+    //NSLog(@"repeated words = %@", sortedArray);
+
+    //NSLog(@"wordData array = %@", arrayWithWordData);
+
+
+    NSLog(@"tracer after");
+
+    for (WordData* word in arrayWithWordData) {
+
+        NSLog(@" %@ : %ld", word.word, (long)word.repeatsCount);
+    }
+
+
+
+
 
 
 
