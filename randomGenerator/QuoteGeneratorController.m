@@ -13,12 +13,16 @@
 
 @interface QuoteGeneratorController ()
 
+@property (strong, nonatomic) NSMutableArray* sortedArray;
+
 @end
 
 @implementation QuoteGeneratorController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.sortedArray = [NSMutableArray array];
 
 
 
@@ -29,22 +33,6 @@
     NSString* content = [NSString stringWithContentsOfFile:path
                                                   encoding:NSUTF8StringEncoding
                                                      error:NULL];
-
-
-
-
-
-//    while ([content containsString:@"["]) {
-//        content = [content stringByReplacingOccurrencesOfString:@"[" withString:@""];
-//    }
-//
-//    while ([content containsString:@"]"]) {
-//        content = [content stringByReplacingOccurrencesOfString:@"]" withString:@""];
-//    }
-
-    //NSLog(@"Source txt = %@", content);
-
-
 
 
     NSArray* splitByLines = [content componentsSeparatedByString:@"\n"];
@@ -59,7 +47,7 @@
 
         NSString* tempStr2 = str;
 
-    while (([tempStr2 containsString:@"."] || [tempStr2 containsString:@""""] || [tempStr2 containsString:@","] || [tempStr2 containsString:@"//"] || [tempStr2 containsString:@"("] || [tempStr2 containsString:@")"])) {
+    while (([tempStr2 containsString:@"."] || [tempStr2 containsString:@""""] || [tempStr2 containsString:@","] || [tempStr2 containsString:@"//"] || [tempStr2 containsString:@"("] || [tempStr2 containsString:@"*"] || [tempStr2 containsString:@"_"]|| [tempStr2 containsString:@")"])) {
 
             NSString* tempStr = str;
 
@@ -69,6 +57,9 @@
             tempStr = [tempStr stringByReplacingOccurrencesOfString:@"//" withString:@""];
             tempStr = [tempStr stringByReplacingOccurrencesOfString:@"(" withString:@""];
             tempStr = [tempStr stringByReplacingOccurrencesOfString:@")" withString:@""];
+            tempStr = [tempStr stringByReplacingOccurrencesOfString:@"*" withString:@""];
+            tempStr = [tempStr stringByReplacingOccurrencesOfString:@"_" withString:@""];
+
 
         tempStr2 = tempStr;
 
@@ -79,9 +70,24 @@
 
     NSString* combinedString = [editedText componentsJoinedByString:@" "];
 
+    combinedString = [combinedString capitalizedString];
+
     //NSLog(@"combined string = %@", combinedString);
 
     NSArray* singleWords = [combinedString componentsSeparatedByString:@" "];
+
+    NSMutableArray* tempArray1 = [NSMutableArray array];
+
+    for (NSString* str in singleWords)
+    {
+
+        if ([str length] >= 3) {
+            [tempArray1 addObject:str];
+
+        }
+    }
+
+    singleWords = tempArray1;
 
    // NSLog(@" single words array = %@", singleWords);
 
@@ -117,114 +123,95 @@
 
     NSMutableArray* arrayWithWordData = [NSMutableArray array];
 
-    NSLog(@"tracer before cycle");
+    NSLog(@"count of array = %ld", (unsigned long)[sortedArray count]);
+
+
+
+
+    NSInteger count = 0;
+
+    for (int i = 0; i < [sortedArray count] - 1; i++) {
+
+        if ([[sortedArray objectAtIndex:i] isEqualToString:[sortedArray objectAtIndex:i + 1]])  {
+
+            count++;
+        }
+
+        else
+        {
+            WordData* word = [[WordData alloc] init];
+            word.word = [sortedArray objectAtIndex:i];
+            word.repeatsCount = count;
+            count = 0;
+            [arrayWithWordData addObject:word];
+        }
+    }
+
+    NSLog(@"count of array before sort = %ld", [arrayWithWordData count]);
+
+
+
+    //[self sortArray:arrayWithWordData];
+
+    NSMutableArray* testArray = @[@"1",@"2",@"3",@"4"];
+
+    NSLog(@"testArray = %@", testArray);
+
+
+
+
+
+
+
+
+    [testArray replaceObjectAtIndex:0 withObject:testInt];
+
+    NSLog(@"replaced array = %@", testArray);
+
+
 
     
 
 
-    for (int i = 0; i < [sortedArray count]; i++) {
-
-        int count = 0;
-
-
-        if ([[sortedArray objectAtIndex:i] isEqualToString:[sortedArray objectAtIndex:i + 1 ]]) {
-            count = count + 1;
-        } else {
-
-            WordData* word = [[WordData alloc] init];
-            word.word = [sortedArray objectAtIndex:i - 1];
-            word.repeatsCount = count;
-            [arrayWithWordData addObject:word];
-            count = 0;
-
-
-        }
-
-
-
-
-
-
-
-//        if (i + 1 < [sortedArray count]) {
-//
-//            WordData* word = [[WordData alloc] init];
-//            word.repeatsCount = 0;
-//
-//            if ([[sortedArray objectAtIndex:i] isEqualToString:[sortedArray objectAtIndex:i + 1]]) {
-//                word.word = [sortedArray objectAtIndex:i];
-//                word.repeatsCount += 1;
-//
-//            } else {
+//    for (WordData* word in arrayWithWordData) {
 //
 //
-//                [arrayWithWordData addObject:word];
-//                word = nil;
-//
-//            }
-//            
-//        }
+//        NSLog(@" %@ : %ld", word.word, (long)word.repeatsCount);
+//    }
 
-        }
-
-
-
-
-    NSLog(@"tracer before");
-
-
-
-    //NSLog(@"repeated words = %@", sortedArray);
-
-    //NSLog(@"wordData array = %@", arrayWithWordData);
-
-
-    NSLog(@"tracer after");
+    NSLog(@"count of array after sort = %ld", [arrayWithWordData count]);
 
     for (WordData* word in arrayWithWordData) {
 
-        NSLog(@" %@ : %ld", word.word, (long)word.repeatsCount);
+        NSLog(@"%@ : %ld",word.word, word.repeatsCount);
+    }
+
+    
+
+
+
+
+
+
+}
+
+- (void) sortArray:(NSMutableArray*)arrayForSort
+{
+
+    for (int i = 0; i < [arrayForSort count] - 1 ; i++) {
+        if ([[arrayForSort objectAtIndex:i] repeatsCount] < [[arrayForSort objectAtIndex:i + 1] repeatsCount]) {
+
+            WordData* biggerObj = [arrayForSort objectAtIndex:i + 1];
+            WordData* lessObj = [arrayForSort objectAtIndex:i];
+            NSLog(@"before replace obj i : %@ obji +1 : %@", lessObj.word, biggerObj.word);
+            [arrayForSort replaceObjectAtIndex:i withObject:[arrayForSort objectAtIndex:i + 1]];
+            NSLog(@"after replace obj i : %@ obji + 1 : %@", [[arrayForSort objectAtIndex:0] word],[[arrayForSort objectAtIndex:i + 1]word] );
+            [self sortArray:arrayForSort];
+        } else continue;
+
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-    //NSLog(@"Edited text = %@", editedText);
-
-
-
-
-
-
-    //NSArray* splitBySpace = [[splitByLines firstObject] componentsSeparatedByString:@" "];
-
-
-
-
-//    NSMutableArray* editedText = [NSMutableArray array];
-//
-//    for (NSString* str in splitByLines) {
-//        NSString* tempString;
-//
-//        while ([str containsString:@"["] && [str containsString:@"]"] && [str containsString:@"//"]) {
-//
-//            tempString = [str stringByReplacingOccurrencesOfString:@"\\" withString:@""];
-//            tempString = [str stringByReplacingOccurrencesOfString:@"[" withString:@""];
-//            tempString = [str stringByReplacingOccurrencesOfString:@"]" withString:@""];
-//            [editedText addObject:tempString];
-//        }
-//    }
-//
-//    NSLog(@"new content = %@", editedText);
 
 
 
